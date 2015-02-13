@@ -1,6 +1,11 @@
 (function(){
   'use strict';
 
+// anxious, bored, cold, confident
+// curious, disappointed, disgusted, exhausted
+// happy, hot, hysterical, interested
+// lonely, satisfied, surprised, thoughtful
+
 var emotions = [
   {
     name: "angry"
@@ -118,37 +123,38 @@ var emotions = [
 
 var MyRouter = Backbone.Router.extend({
   routes: {
-    "": "emotion",
+    "": "index",
     "emotion/:id": "emotion",
-    "express": "express"
   },
 
-  // index: function(){
-  //   var template = _.template( $('#start-screen').text()
-  //   );
-  //   var renderedTemplate = template({emotion: emotions});
-  //   $('container').html(renderedTemplate);
-  //   },
-
-  emotion: function(id){
-    var emotionIndex = Number(id);
-    var emotion = emotions[emotionIndex];
-
+  index: function(){
     var template = _.template( $('#start-screen').text()
     );
-    var renderedTemplate = template(emotions[0]);
+    var renderedTemplate = template( {anEmotion: emotions});
     $('container').html(renderedTemplate);
-    }
-});
+  },
 
-//   express: function(){
-//     var template = _.template( $('showemotion').text());
-//     var renderedTemplate = template();
-//     $('container-showemotion').html(renderTemplate);}
+//   index: function(){
+//     var emotionIndex = Number(id);
+//     var emotion = emotions[emotionIndex];
+//
+//     var template = _.template( $('#start-screen').text()
+//     );
+//     var renderedTemplate = template({emotion: emotions});
+//     $('container').html(renderedTemplate);
+//     }
+// });
+
+  emotion: function(){
+    var template = _.template( $('showemotion').text());
+    var renderedTemplate = template();
+    $('container-showemotion').html(renderTemplate);}
+});
 
 $(document).ready(function(){
   var router = new MyRouter();
   Backbone.history.start();
+  console.log('hi');
 
 
 });

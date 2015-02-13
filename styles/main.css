@@ -1,3 +1,124 @@
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
 
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit; }
+
+body {
+  margin: 0 auto;
+  color: blue;
+  font-size: 1.2em; }
+
+.page-header {
+  margin: 40px auto;
+  width: 80%;
+  text-align: center;
+  font-size: 4em; }
+
+.container {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid blue; }
+  .container::after {
+    clear: both;
+    content: "";
+    display: table; }
+
+.box {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 23.23176%;
+  padding: 10px;
+  width: 23%;
+  height: 130px; }
+  .box:last-child {
+    margin-right: 0; }
+
+.box:nth-child(4n) {
+  margin-right: 0; }
+
+.p1 {
+  background: url("../images/anxious.png"); }
+
+.p2 {
+  background: url("../images/bored.png"); }
+
+.p3 {
+  background: url("../images/cold.png"); }
+
+.p4 {
+  background: url("../images/confident.png"); }
+
+.p5 {
+  background: url("../images/curious.png"); }
+
+.p6 {
+  background: url("../images/disappointed.png"); }
+
+.p7 {
+  background: url("../images/disgusted.png"); }
+
+.p8 {
+  background: url("../images/exhausted.png"); }
+
+.p9 {
+  background: url("../images/happy.png"); }
+
+.p10 {
+  background: url("../images/hot.png"); }
+
+.p11 {
+  background: url("../images/hysterical.png"); }
+
+.p12 {
+  background: url("../images/interested.png"); }
+
+.p13 {
+  background: url("../images/lonely.png"); }
+
+.p14 {
+  background: url("../images/satisfied.png"); }
+
+.p15 {
+  background: url("../images/surprised.png"); }
+
+.p16 {
+  background: url("../images/thoughtful.png"); }
+
+.p1,
+.p2,
+.p3,
+.p4,
+.p5,
+.p6,
+.p7,
+.p8,
+.p9,
+.p10,
+.p11,
+.p12,
+.p13,
+.p14,
+.p15,
+.p16 {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain; }
+
+.express-yourself {
+  display: block;
+  margin: 40px auto;
+  border-radius: 20px;
+  width: 80%;
+  height: 50px;
+  color: white;
+  font-size: 1.2em;
+  background-color: blue; }
 
 /*# sourceMappingURL=main.css.map */

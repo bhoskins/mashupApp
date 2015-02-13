@@ -1,0 +1,138 @@
+Guest Speaker Matt
+Canvas -
+flipboard.com
+in css:
+animate: hover:
+
+transition:
+devdocs.io
+  like dash
+
+canvas: throw paint at it, only way to change is to paint over it.
+
+HTML:
+<canvas id="c">
+
+<sript type="text/javascript" src="particles.js"></script>>
+
+
+0,0                   x+
+
+
+
+y+
+
+point of origen and then size, x, y
+
+css
+  canvas {
+  top:
+  right;
+  bottom:
+  left:
+}
+
+browsers: caniuse.com
+
+var ctx,
+    size;
+
+function Sim(){
+// find first element with this id
+// this is css friendly
+  var canvas = document.querySelector('#c');
+    self = this;
+  ctx = canvas.getContext('2d');
+  // also had canvas.getContext('3d') not supported well
+  debugger;
+
+  function tick(){
+  self.update();
+  self-draw();
+    requetAnimationFrame(tick);
+  ctx = canvas.getContext('2d');
+  size = {x: canvas.offsetWidth,
+          y: canvas.offsetHeight}
+  canvas.width = size.x;
+  canvas.height = size.y;
+}
+
+// no % in canvas - get size from jQuery and pass in w/ var
+  tick();
+}
+
+Sim.prototype = {
+  update: function
+
+  draw: function(){
+    this.items.forEach(function(i){
+
+})
+
+
+  ctx.fillStyle = "#fff";
+    ctx.fillRect(100, 100, 100, 100);
+    // x on canvas, y on canvas, width, height
+    //
+
+    this.item = [new Square(0,0,100,100)]
+}
+
+
+
+function Square(left, top, width, height){
+  this.left = left;
+  this.top = top'
+  thos.width = width;
+  this.height = height;
+}
+
+Square.prototype = {
+  update: function
+
+  draw: function(){
+  ctx.fillStyle = "#fff";
+    ctx.fillRect(100, 100, 100, 100);
+    // x on canvas, y on canvas, width, height
+    //
+}
+
+
+
+windos.onload = function(){
+  new Sim;
+}
+
+//window.addEventListener('load', callback)
+
+cmd opt i Chrome open debugger
+
+ctx properties:
+  css styles don't exist in canvas
+
+The game Loop:
+
+
+js:
+function draw(){
+  requestAnimationFrame(draw);
+}
+
+setInterval(16, draw); // 16.6 ms = 1/60 of sec 1000/60
+
+// what if browser can't keep up
+  built in function
+
+  requestAnimationFrame(draw);
+
+var hex =
+
+Math.floor(Math.random() *16777215).toString(16);
+hex = ((000000) + hex).slice(-6);
+
+new Array(20).join(',').split(',')
+
+creative js
+
+
+wrinkle free javascript
