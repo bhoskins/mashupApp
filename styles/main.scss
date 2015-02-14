@@ -38,6 +38,14 @@ body {
   @include omega();
 }
 
+.box:hover {
+  border-top: 1px solid blue;
+  border-right: 3px solid blue;
+  border-bottom: 3px solid blue;
+  border-left: 1px solid blue;
+  cursor: pointer;
+}
+
 .p1 {
   background: url('../images/anxious.png');
 }
@@ -127,9 +135,49 @@ body {
   display: block;
   margin: 40px auto;
   border-radius: 20px;
+  background-color: blue;
   width: 80%;
   height: 50px;
   color: white;
   font-size: 1.2em;
-  background-color: blue;
+}
+
+/**************************
+Expression.html code below
+***************************/
+
+.showemotion-border {
+  margin: 100px auto;
+  border-radius: 20px;
+  background-color: black;
+  padding: 20px;
+  width: 640px;
+  height: 440px;
+}
+
+.showemotion-wrap {
+/*   margin: 100px auto; */
+  border: 3px solid black;
+  border-radius: 20px;
+  background-color: black;
+/*   background-image: url('http://media4.giphy.com/media/Zt2f45vHLZtaU/200.gif'); */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  width: 600px;
+  height: 400px;
+}
+
+.subtitle {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.show-songs {
+  margin: 40px auto;
+  border: 3px solid blue;
+  border-radius: 20px;
+  width: 300px;
+  height: 300px;
+
 }

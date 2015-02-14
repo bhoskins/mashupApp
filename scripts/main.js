@@ -6,155 +6,196 @@
 // happy, hot, hysterical, interested
 // lonely, satisfied, surprised, thoughtful
 
-var emotions = [
-  {
-    name: "angry"
-    // song: "",
-    // color: "",
-    // emoticon: "",
-    // gif: "",
-  },
-  // {
-  //   name: "sad",
-  //   song: "",
-  //   color: "",
-  //   emoticon: "",
-  //   gif: "",
-  // },
-  // {
-  //   name: "excited",
-  //   song: "",
-  //   color: "",
-  //   emoticon: "",
-  //   gif: "",
-  // },
-  // {
-  //   name: "embarrassed",
-  //   song: "",
-  //   color: "",
-  //   emoticon: "",
-  //   gif: "",
-  // },
-  // {
-  //   name: "silly",
-  //   song: "",
-  //   color: "",
-  //   emoticon: "",
-  //   gif: "",
-  // },
-  // {
-  //   name: "smart",
-  //   song: "",
-  //   color: "",
-  //   emoticon: "",
-  //   gif: "",
-  // },
-  // {
-  //   name: "shocked",
-  //   song: "",
-  //   color: "",
-  //   emoticon: "",
-  //   gif: "",
-  // },
-  // {
-  //   name: "devilish",
-  //   song: "",
-  //   color: "",
-  //   emoticon: "",
-  //   gif: "",
-  // },
-  // {
-  //   name: "frustrated",
-  //   song: "",
-  //   color: "",
-  //   emoticon: "",
-  //   gif: "",
-  // },
-  // {
-  //   name: "cool",
-  //   song: "",
-  //   color: "",
-  //   emoticon: "",
-  //   gif: "",
-  // },
-  // {
-  //   name: "scared",
-  //   song: "",
-  //   color: "",
-  //   emoticon: "",
-  //   gif: "",
-  // },
-  // {
-  //   name: "frisky",
-  //   song: "",
-  //   color: "",
-  //   emoticon: "",
-  //   gif: "",
-  // },
-  // {
-  //   name: "grouchy",
-  //   song: "",
-  //   color: "",
-  //   emoticon: "",
-  //   gif: "",
-  // },
-  // {
-  //   name: "heartbroken",
-  //   song: "",
-  //   color: "",
-  //   emoticon: "",
-  //   gif: "",
-  // },
-  // {
-  //   name: "overwhelmed",
-  //   song: "",
-  //   color: "",
-  //   emoticon: "",
-  //   gif: "",
-  // },
-  {
-    name: "overjoyed"
-    // song: "",
-    // color: "",
-    // emoticon: "",
-    // gif: "",
+// giph public key dc6zaTOxFJmzC
+// giph search path /v1/gifs/search
+// Parameters
+
+// q - search query term or phrase
+// limit - (optional) number of
+//    results to return, maximum 100.
+//    Default 25.
+// offset - (optional) results
+//   offset, defaults to 0.
+// rating - limit results to those
+//   rated (y,g, pg, pg-13 or r).
+
+//  data: [ { embed_url, rating: }]
+// pagination: count
+
+// get gif by id path: /v1/gifs/<gif_id>
+
+// "embed_url": "http://giphy.com/embed/feqkVgjJpYtjy",
+
+//random gif
+//http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=american+psycho
+
+// How to get play and embed url
+
+var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=anxious+nervous&api_key=dc6zaTOxFJmzC&limit=10");
+xhr.done(function(data) {
+   console.log("success got data",
+ data);
+ console.log("play url: ", data.data[0].images.fixed_height.url);
+ console.log("embed url: ", data.data[0].embed_url);
+ var gifPlayUrl = data.data[0].images.fixed_height.url;
+ var gifEmbedUrl = data.data[0].embed_url;
+});
+
+/**********************************************
+    Models
+*******************************************/
+var searchTermPre = "\?q\=";
+var searchTermFull;
+var gifPlayUrl;
+var gifEmbedUrl;
+var giphyUrlBase = "http://api.giphy.com/v1/gifs";
+var giphyApiKey = "&api_key=dc6zaTOxFJmzC";
+var giphyLimit = "&limit=10";
+var giphySearchUrl = "http://api.giphy.com/v1/gifs/search";
+
+function giphyFetchPlayUrls(searchTerm){
+  searchTermFull = searchTermPre + searchTerm;
+  var gifUrl = (('http://api.giphy.com/v1/gifs/search&api_key=dc6zaTOxFJmzC').slice(0, 35));
+  gifPlayUrl = gifUrl.concat(searchTermPre, searchTerm, giphyApiKey, giphyLimit );
+  console.log('gifPlayUrl: '  + gifPlayUrl );
+
+  // anxiousDataModel.get(gifEmbedUrl);
+  // console.log("function giphyFetch: " + gifPlayUrl);
+  // anxiousDataModel.save();
+}
+
+
+var EmotionDataModel = Backbone.Model.extend({
+
+  url: giphySearchUrl + searchTermPre + giphyApiKey,
+  defaults: {
+    embed_url: "",
+    searchTerm: ""
   }
-];
+});
+
+
+var anxiousDataModel = new EmotionDataModel({
+  // anxiousDataModel.fetch().then(function(){
+  //   searchTerm = searchTermPre + "anxious+nervous";
+  //   anxiousDataModel.get(searchTerm + giphyApiKey + giphyLimit);
+  //   anxiousDataModel.get(gifEmbedUrl);
+  //   // anxiousDataModel.save();
+
+    fetch: function(searchTerm){
+      searchTerm = 'anxious+nervous';
+      giphyFetchPlayUrls(searchTerm);
+    }
+  });
+
+  anxiousDataModel.fetch('anxious+nervous');
+
+var emotionDataModel = new EmotionDataModel();
+
+
+var EmotionsCollection = Backbone.Collection.extend({
+  model: EmotionDataModel
+});
+
+var EmotionsView = Backbone.View.extend({
+  collection: "EmotionsCollection",
+  el: '.container',
+
+});
+
+var emotionsAll = new EmotionsView();
+
+var AnxiousView = Backbone.View.extend({
+  collection: "EmotionsCollection",
+  model: EmotionDataModel,
+  el: '.anxious',
+    events: {
+    "click": "collectData"
+  },
+  collectData: function() {
+    var self = this;
+    console.log("anxiousView func: " + this.className);
+    // console.log("hey: " + this.className);
+
+    $("." + this.className).css({
+      "border-top": "1px solid blue",
+      "border-right": "3px solid blue",
+      "border-bottom": "3px solid blue",
+      "border-left": "1px solid blue"
+    });
+
+    $("." + this.className).siblings().css({
+      "border": "none"
+    });
+  }
+ });
+
+ var BoredView = Backbone.View.extend({
+   collection: "EmotionsCollection",
+   model: EmotionDataModel,
+   el: '.bored',
+   events: {
+     "click": "collectData"
+   },
+   collectData: function() {
+     var self = this;
+     console.log("boredView func: " + this.className);
+     // console.log("hey: " + this.className);
+
+     $("." + this.className).css({
+       "border-top": "1px solid blue",
+       "border-right": "3px solid blue",
+       "border-bottom": "3px solid blue",
+       "border-left": "1px solid blue"
+     });
+
+     $("." + this.className).siblings().css({
+       "border": "none"
+     });
+   }
+  });
+
+  var ExpressEmotionView = Backbone.View.extend({
+    // collection: "EmotionsCollection",
+    model: "EmotionDataModel",
+    el: '.showemotion-wrap',
+    render: function(){
+      $el.css("background-image", toString(giphyPlayUrl));
+    }
+
+  });
+
+  var expressEmotionView = new ExpressEmotionView();
+  expressEmotionView.render();
+
+//From backbone doc
+//view.listenTo(model, 'change', view.render);
+
 
 var MyRouter = Backbone.Router.extend({
   routes: {
     "": "index",
-    "emotion/:id": "emotion",
+    express: "express",
   },
 
   index: function(){
-    var template = _.template( $('#start-screen').text()
-    );
-    var renderedTemplate = template( {anEmotion: emotions});
-    $('container').html(renderedTemplate);
+
   },
 
-//   index: function(){
-//     var emotionIndex = Number(id);
-//     var emotion = emotions[emotionIndex];
-//
-//     var template = _.template( $('#start-screen').text()
-//     );
-//     var renderedTemplate = template({emotion: emotions});
-//     $('container').html(renderedTemplate);
-//     }
-// });
+  express: function(){
 
-  emotion: function(){
-    var template = _.template( $('showemotion').text());
-    var renderedTemplate = template();
-    $('container-showemotion').html(renderTemplate);}
+  }
+
 });
+
+//   document.ready
 
 $(document).ready(function(){
   var router = new MyRouter();
+  var anxiousView = new AnxiousView();
+  var boredView = new BoredView();
   Backbone.history.start();
-  console.log('hi');
+  // console.log(emotionsAll.el);
 
 
 });
