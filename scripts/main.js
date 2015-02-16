@@ -65,9 +65,9 @@ xhr.done(function(data) {
  data);
   gifPlayUrl = data.data[0].images.fixed_height.url;
   gifEmbedUrl = data.data[0].embed_url;
-  expressEmotionView.render();
  // console.log("play url: ", data.data[0].images.fixed_height.url);
  // console.log("embed url: ", data.data[0].embed_url);
+
 });
 
 
@@ -104,8 +104,21 @@ var emotionDataModel = new EmotionDataModel();
 // });
 
 var EmotionsView = Backbone.View.extend({
-  // collection: "EmotionsCollection",
+  collection: "EmotionsCollection",
+  model: EmotionDataModel,
   el: '.container',
+  // events: {
+  //   'click .express-yourself': 'displayExpress'
+  // },
+  // displayExpress: function(){
+  //   this.router.navigate('index', true);
+  // },
+  // initialize: function(){
+  //   this.router = new MyRouter();
+  // }
+  // render: function(){
+  //   console.log('EmotionView rendered');
+  // }
 
 });
 
@@ -126,9 +139,15 @@ function blueBorder(div){
 
 
 var AnxiousView = Backbone.View.extend({
-  // collection: "EmotionsCollection",
+  collection: "EmotionsCollection",
   model: EmotionDataModel,
   el: '.anxious',
+  initialize: function(){
+    this.render();
+  },
+  render: function(){
+    this.$el.css("background-image", gifPlayUrl);
+  },
   events: {
     "click": "collectData"
   },
@@ -136,7 +155,7 @@ var AnxiousView = Backbone.View.extend({
     searchTerm = "anxious+nervous";
     blueBorder('.anxious');
     console.log('anxious clicked');
-  }
+  },
  });
 
 var anxiousView = new AnxiousView();
