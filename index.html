@@ -3,78 +3,41 @@
 <head>
   <link rel="stylesheet" href="styles/main.css">
   <meta charset="UTF-8">
-  <title>Express Yourself</title>
-
-<!--  Evernote api links -->
-<!--   <script src="js/jsOAuth-1.3.6.min.js" type="text/javascript"></script>
-<script src="js/evernote-sdk-minified.js" type="text/javascript"></script> -->
+  <title>Blog App</title>
 
 </head>
 <body>
-  <h1 class="page-header">How do you feel?</h1>
-
   <div class="container">
-    <div class="box p1 anxious">
+    <h1 class="blog-post-heading">Blog Posts</h1>
+  <ul class="blog-list js-blog-list">
+      <li class="js-blog-title blog-title">
+        <input type="text" class="js-title-input title-input" placeholder="Post Title">
+         
+      </li>
+      <button type="input" class="js-blog-edit blog-edit">edit</button>
+      <button type="input" class="js-blog-delete blog-delete">X</button>
+  
+    </ul>
+
+   
+    <button type="submit" class="js-add-post-button add-post-button">add post</button>
+    <div class="js-new-post-wrap new-post-wrap">
+      <input type="text" placeholder="Post Title" class="js-new-post-title new-post-title">
+      <textarea class="js-new-post-body new-post-body"></textarea>
+      <button type="submit" class="js-submit-new-post submit-new-post">create post</button>
+
+      </ul>
     </div>
 
-    <div class="box p2 bored">
-    </div>
+</div>
 
-    <div class="box p3 rage">
-    </div>
 
-    <div class="box p4 confident">
-    </div>
 
-    <div class="box p5 curious">
-    </div>
-
-    <div class="box p6 disappointed">
-    </div>
-
-    <div class="box p7 disgusted">
-    </div>
-
-    <div class="box p8 exhausted">
-    </div>
-
-    <div class="box p9 happy">
-    </div>
-
-    <div class="box p10 scared">
-    </div>
-
-    <div class="box p11 hysterical">
-    </div>
-
-    <div class="box p12 interested">
-    </div>
-
-    <div class="box p13 lonely">
-    </div>
-
-    <div class="box p14 satisfied">
-    </div>
-
-    <div class="box p15 surprised">
-    </div>
-
-    <div class="box p16 thoughtful">
-    </div>
-
-  </div><!-- .container -->
-
-  <div class="colors canvasDiv">
-
-  </div>
-
-  <button type="submit" class="express-yourself">Express Yourself</button>
-
-  <script type="text/template" id="start-screen">
-    <div>
-
+  <script type="text/template" class="blog-template">
 
   </script>
+  
+
 
 
 <script type="text/javascript" src="bower_components/jquery/dist/jquery.js">
