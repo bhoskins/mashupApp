@@ -79,15 +79,20 @@ var AddPostView = Backbone.View.extend({
 
 
 
-var NewPostTitle = Backbone.View.extend({
-  el: '.js-new-post-title',
+var NewPostView = Backbone.View.extend({
+  el: '.js-new-post-form',
   events: {
-    "submit": 'submitPostTitle'
+    "submit": 'submitNewPost'
   },
-  submitPostTitle: function(e){
+  submitNewPost: function(e){
       e.preventDefault();
-      newPostTitle = this.$el.val();
-      console.log('the post title');
+      var newPostTitle = $('.js-new-post-title').val();
+      var newPostBody = $('.js-new-post-body').val();
+      console.log(newPostTitle);
+      console.log(newPostBody);
+      $('.js-new-post-title').val("");
+      $('.js-new-post-body').val("");
+
  
   },
   render: function(){
@@ -128,7 +133,7 @@ var AppRouter = Backbone.Router.extend({
     this.blogsCollection.fetch();
     var addPost = new AddPostView();
     var newPost = new NewPostBody();
-    var newPostTitle = new NewPostTitle();
+    var newPost = new NewPostView();
     $('.js-new-post-wrap').css("visibility", "hidden");
   },
   postDetail: function(){
