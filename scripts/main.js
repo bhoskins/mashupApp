@@ -44,7 +44,14 @@ var BlogsCollection = Backbone.Collection.extend({
     Views
 *******************************************/
 var BlogListView = Backbone.View.extend({
-  el: '.blog-list'
+  el: '.blog-list',
+  initialize: function(){
+    this.listenTo($('.js-blog-edit'), "create sync", 
+      this.render);
+  },
+  render: function(){
+    console.log('BlogListView just rendered');
+  }
 });
 
 var BlogItemView = Backbone.View.extend({
@@ -61,6 +68,45 @@ var BlogItemView = Backbone.View.extend({
   }
 });
 
+var AddPostView = Backbone.View.extend({
+  el: '.js-add-post-button',
+  events: {
+    "click": function(){
+      $('.js-new-post-wrap').css("visibility", "visible");
+    }
+  }
+});
+
+
+
+var NewPostTitle = Backbone.View.extend({
+  el: '.js-new-post-title',
+  events: {
+    "submit": 'submitPostTitle'
+  },
+  submitPostTitle: function(e){
+      e.preventDefault();
+      newPostTitle = this.$el.val();
+      console.log('the post title');
+ 
+  },
+  render: function(){
+     
+  }
+});
+
+var NewPostBody = Backbone.View.extend({
+  el: '.js-new-post-body',
+  events: {
+    "submit .js-submit-new-post": 'createPost'
+  },
+  createPost: function(e){
+    e.preventDefault();
+    $('.js-new-post-wrap').css("visibility", "none");
+  }
+});
+
+
 
 /**********************************************
     Routers
@@ -71,13 +117,19 @@ var AppRouter = Backbone.Router.extend({
     "postdetail": "postDetail"
   },
   initialize: function(){
+
     this.blogsCollection = new BlogsCollection();
     this.listView = new BlogListView();
     this.blogItem = new BlogItemView();
+    
 
   },
   index: function(){
     this.blogsCollection.fetch();
+    var addPost = new AddPostView();
+    var newPost = new NewPostBody();
+    var newPostTitle = new NewPostTitle();
+    $('.js-new-post-wrap').css("visibility", "hidden");
   },
   postDetail: function(){
 

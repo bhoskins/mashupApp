@@ -10,23 +10,21 @@
   <div class="container">
     <h1 class="blog-post-heading">Blog Posts</h1>
   <ul class="blog-list js-blog-list">
-      <li class="js-blog-title blog-title">
-        <input type="text" class="js-title-input title-input" placeholder="Post Title">
-         
-      </li>
+      <input type="text" class="js-blog-title blog-title">
+
       <button type="input" class="js-blog-edit blog-edit">edit</button>
       <button type="input" class="js-blog-delete blog-delete">X</button>
   
     </ul>
 
-   
-    <button type="submit" class="js-add-post-button add-post-button">add post</button>
+   <form class="js-new-post-form new-post-form">
+    <button type="button" class="js-add-post-button add-post-button">add post</button>
     <div class="js-new-post-wrap new-post-wrap">
       <input type="text" placeholder="Post Title" class="js-new-post-title new-post-title">
       <textarea class="js-new-post-body new-post-body"></textarea>
-      <button type="submit" class="js-submit-new-post submit-new-post">create post</button>
+      <input type="submit" class="js-submit-new-post submit-new-post" value="create post">
 
-      </ul>
+  </form>
     </div>
 
 </div>
